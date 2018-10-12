@@ -1,0 +1,65 @@
+[
+  {
+    "start_date": "2018-10-10T12:15:09Z",
+    "start_date_local": "2018-10-10T05:15:09Z",
+    "distance": "5320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-10-09T12:15:09Z",
+    "start_date_local": "2018-10-09T05:15:09Z",
+    "distance": "4320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-10-05T12:15:09Z",
+    "start_date_local": "2018-10-05T05:15:09Z",
+    "distance": "5320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-10-02T12:15:09Z",
+    "start_date_local": "2018-10-02T05:15:09Z",
+    "distance": "4320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-08-15T12:15:09Z",
+    "start_date_local": "2018-08-15T05:15:09Z",
+    "distance": "4320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-08-10T12:15:09Z",
+    "start_date_local": "2018-08-10T05:15:09Z",
+    "distance": "5320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-05-01T12:15:09Z",
+    "start_date_local": "2018-05-01T05:15:09Z",
+    "distance": "4320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-04-29T12:15:09Z",
+    "start_date_local": "2018-04-29T05:15:09Z",
+    "distance": "5320",
+    "duration": "1800",
+    "type": "Run"
+  },
+  {
+    "start_date": "2018-04-27T12:15:09Z",
+    "start_date_local": "2018-04-27T05:15:09Z",
+    "distance": "4320",
+    "duration": "1800",
+    "type": "Run"
+  }
+]

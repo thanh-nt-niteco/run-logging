@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ChartComponent from './components/ChartComponent';
+import Filter from './components/FilterComponent';
+
+import FetchActivity from './services/FetchActivity';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userId: '0',
+      userActivities: [],
+      pageActivity: 0
+    }
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Filter />
+        <ChartComponent />
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.getUserActivity();
+  }
+
+  getUserActivity () {
+    const fetchActivityUser = FetchActivity.getActivityByUser(this.state.userId, this.state.pageActivity);
+    fetchActivityUser.then(result => {
+      if(!result && result.length > 0) {
+          this.setStage((prevStat) => {
+            return {userActivities: [...prevStat.userActivities, ...result]};
+          } );
+      }
+    }).catch(error => {
+      console.log(error);
+    });
   }
 }
 
