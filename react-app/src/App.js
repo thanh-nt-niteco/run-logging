@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Filter />
+        <Filter activities={this.userActivities} />
         <ChartComponent />
       </div>
     );
