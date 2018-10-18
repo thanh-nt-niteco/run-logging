@@ -61,5 +61,12 @@
     "distance": "4320",
     "duration": "1800",
     "type": "Run"
+  },
+  {
+    "start_date": "2017-12-27T12:15:09Z",
+    "start_date_local": "2017-12-27T05:15:09Z",
+    "distance": "5320",
+    "duration": "1800",
+    "type": "Run"
   }
 ]
