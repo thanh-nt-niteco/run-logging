@@ -1,0 +1,17 @@
+.text-align-center {
+    text-align: center;
+}
+.column-data-container {
+    background: lightblue;
+    font-size: 0;
+    padding: 50px 0 0;
+    margin-bottom: 20px;
+}
+.column-data {
+    content: '';
+    display: inline-block;
+    width: 50%;
+    max-width: 40px;
+    min-width: 5px;
+    background: blue;
+}

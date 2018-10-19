@@ -3,6 +3,7 @@ import ChartComponent from './components/ChartComponent';
 import TimeFilterComponent from './components/TimeFilterComponent';
 import CONST_VALUE from './utils/const';
 import FetchActivity from './services/FetchActivity';
+import {isNullComponent} from './components/UtilsComponent';
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +28,9 @@ class App extends Component {
   }
 
   onChangeYear (event) {
-    console.log(event.target.value)
+    this.setState({
+      selectedYear: parseInt(event.target.value, 10)
+    });
   }
   onChangeMonth (event) {
     console.log(event.target.value)
@@ -37,10 +40,13 @@ class App extends Component {
   }
 
   render() {
+    const TimeFilterComponentCheckedNull = isNullComponent(TimeFilterComponent);
+    const ChartComponentCheckedNull = isNullComponent(ChartComponent);
+
     return (
       <div className="app-wrapper container">
-        {this.state.hasActivity ? 
-        <TimeFilterComponent 
+        <TimeFilterComponentCheckedNull 
+          isNull={!this.state.hasActivity} 
           startYear={this.state.startYear} 
           selectedYear={this.state.selectedYear} 
           selectedMonth={this.state.selectedMonth} 
@@ -48,15 +54,14 @@ class App extends Component {
           onChangeYear={this.onChangeYear}
           onChangeMonth={this.onChangeMonth}
           onChangeWeek={this.onChangeWeek}
-        /> : null}
-        {this.state.hasActivity ? 
-        <ChartComponent 
+        />
+        <ChartComponentCheckedNull 
+          isNull={!this.state.hasActivity} 
           activities={this.state.activities}
           year={this.state.selectedYear} 
           month={this.state.selectedMonth} 
           week={this.state.selectedWeek} 
-        /> : null
-        }
+        />
       </div>
     );
   }
@@ -66,22 +71,35 @@ class App extends Component {
   }
 
   getYearOfFirstActivity (activities) {
-    let startDate = activities && activities.length > 0 ? new Date(activities[activities.length-1].start_date_local) : null;
-    if(startDate)
-      return startDate.getFullYear();
+    let yearOfFirstActivity = activities && activities.length > 0 ? activities[activities.length-1].year : null;
+    if(yearOfFirstActivity)
+      return yearOfFirstActivity;
     return CONST_VALUE.NUMBER_NO_VALUE;
   }
 
   getSelectedYear (activities) {
-    let lastDate = activities && activities.length > 0 ? new Date(activities[0].start_date_local) : null;
-    if(lastDate)
-      return lastDate.getFullYear();
-    return CONST_VALUE.SELECT_ALL_OPTIONS;
+    let yearOfLastActivty = activities && activities.length > 0 ? activities[0].year : null;
+    if(yearOfLastActivty)
+      return yearOfLastActivty;
+    return CONST_VALUE.NUMBER_NO_VALUE;
   }
 
   updateUserActivity(activities) {
     this.setState((prevState) => {
-      var updatedActivities = [...prevState.activities, ...activities];
+      const newActivities = [];
+      if(activities && activities.length > 0) {
+        for(let i=0; i<activities.length; i++) {
+          newActivities.push({
+            start_date: activities[i].start_date,
+            year: activities[i].year,
+            month:activities[i].month,
+            sport: activities[i].sport,
+            distance: activities[i].distance
+          });
+        }
+      }
+
+      const updatedActivities = [...prevState.activities, ...newActivities];
       const startYear = this.getYearOfFirstActivity(updatedActivities);
       const selectedYear = this.getSelectedYear(updatedActivities);
 

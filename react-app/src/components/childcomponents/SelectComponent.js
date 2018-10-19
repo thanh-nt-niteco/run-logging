@@ -8,23 +8,14 @@ class SelectComponent extends Component {
     this.state = {
       selectedValue: (selectedValue && selectedValue.length > 0 && selectedValue[0].value) || this.props.list[0].value
     }
-
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange (event) {
-    this.setState({
-      selectedValue: event.target.value
-    });
-    this.props.onChange(event);
   }
 
   render () {
     const {selectedValue} = this.state;
-    const {list} = this.props;
+    const {list, onChange} = this.props;
 
     return (
-      <select value={selectedValue} onChange={this.onChange}>
+      <select value={selectedValue} onChange={onChange} className={this.props.className}>
         {
           list.map(item => {
             return <option value={item.value} key={item.value}>{item.text}</option>

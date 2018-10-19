@@ -2,7 +2,7 @@ import FetchApi from './Fetch';
 
 class FetchActivity {
   constructor () {
-    this.dataUrl = "/data/logdata.json?";
+    this.dataUrl = "/data/data.json?";
   }
 
   getActivityByUser (userId, page = 0) {
